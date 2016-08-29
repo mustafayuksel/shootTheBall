@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
 
 		if (thisScreen == null) 
 		{
+			Debug.Log ("SpawnUIScreen");
 			thisScreen = (GameObject)Instantiate (Resources.Load ("Prefabs/UIScreens/" + name.ToString ()));
 			thisScreen.name = name;
 			thisScreen.transform.SetParent (UICanvas.transform);
@@ -74,6 +75,7 @@ public class GameController : MonoBehaviour
 		thisScreen.OnWindowLoad ();
 		thisScreen.SetActive (true);
 		LastScreen = thisScreen;
+
 		return thisScreen;
 	}
 
@@ -234,5 +236,34 @@ public class GameController : MonoBehaviour
 	{
 		currentScreen.SetActive (false);
 		SpawnUIScreen ("MainScreen");
+	}
+
+	public void OnLevelUp() {
+
+
+		Debug.Log ("OnLevelUp");
+		GameObject currentScreen = GameScreens.Where (obj => obj.name == "GamePlay").SingleOrDefault ();
+		currentScreen.SetActive (false);
+		SpawnUIScreen ("LevelUp");
+
+	}
+	public void OnContinueButtonPressed() {
+
+		GameObject currentScreen = GameScreens.Where (obj => obj.name == "LevelUp").SingleOrDefault ();
+		currentScreen.SetActive (false);
+		SpawnUIScreen ("NextLevel");
+		Invoke ("ContinueGamePlay", 2f);
+	}
+
+	private void ContinueGamePlay() {
+		GameObject currentScreen = GameScreens.Where (obj => obj.name == "NextLevel").SingleOrDefault ();
+		currentScreen.SetActive (false);
+		SpawnUIScreen ("GamePlay");
+	}
+
+	public void OnGameFinished() {
+		GameObject currentScreen = GameScreens.Where (obj => obj.name == "GamePlay").SingleOrDefault ();
+		currentScreen.SetActive (false);
+		SpawnUIScreen ("EndOfGame");
 	}
 }

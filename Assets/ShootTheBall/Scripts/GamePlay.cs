@@ -13,6 +13,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 	public AudioClip SuccessHit;
 	public AudioClip RingHit;
+	private bool isGameOver = false;
 
 	public List<Color> BGColors = new List<Color>();
 
@@ -39,6 +40,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// </summary>
 	void OnEnable()
 	{
+		isGameOver = false;
 		BGMusicController.instance.StartBGMusic ();
 		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
 		isGamePlay = true;
@@ -67,6 +69,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// </summary>
 	public void OnGameOver ()
 	{
+		isGameOver = true;
 		PlayerPrefs.SetInt ("LastScore", score);
 
 		if (AudioManager.instance.isSoundEnabled) {
@@ -89,10 +92,11 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	{
 		score += count;
 		txtScore.text = score.ToString ("00");
-		OnScoreUpdatedEvent.Invoke (score);
+		//OnScoreUpdatedEvent.Invoke (score);
 
-		if (score % 5 == 0) {
-			SetBackgroundColor();
+		if (score >= LevelManager.instance.currentLevel.levelUpCount && !isGameOver) {
+			
+			Invoke ("levelUp", 1f);
 		}
 
 		if (score > bestScore) {
@@ -137,6 +141,13 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 			InputManager.instance.DisableTouchForDelay ();
 			InputManager.instance.AddButtonTouchEffect ();
 			GameController.instance.PauseGame();
+		}
+	}
+	public void levelUp() {
+		if (!isGameOver) {
+			LevelManager.instance.OnLevelUp ();
+			SetBackgroundColor ();
+			score = 0;
 		}
 	}
 }

@@ -22,11 +22,11 @@ public class Ring : MonoBehaviour
 	public float speedIncreaseOnLevelUp = 15.0F;
 
 	// 1 level will be increase after given count;
-	public int levelUpOnCount = 5;
+	//public int levelUpOnCount = 5;
 
 		/// All the different typed of rings are assigned to this list from the inspector.
-	public List<GameObject> Rings = new List<GameObject>();
-	GameObject currentRing = null;
+	//public List<GameObject> Rings = new List<GameObject>();
+	//GameObject currentRing = null;
 
 	/// <summary>
 	/// Awake this instance.
@@ -44,8 +44,9 @@ public class Ring : MonoBehaviour
 	/// </summary>
 	void OnEnable()
 	{
-		GamePlay.OnScoreUpdatedEvent += OnScoreUpdated;
-
+		
+		//GamePlay.OnScoreUpdatedEvent += OnScoreUpdated;
+		/*
 		if (PlayerPrefs.GetInt ("isRescued", 0) == 1) {
 			rotateSpeed =  ((rotateSpeed > minSpeed) ? rotateSpeed : minSpeed);
 			if(currentRing == null)
@@ -56,7 +57,7 @@ public class Ring : MonoBehaviour
 			currentRing = Rings [Random.Range (0, Rings.Count)];
 			rotateSpeed = minSpeed;
 		}
-		currentRing.SetActive (true);
+		currentRing.SetActive (true); */
 		EGTween.Init (gameObject);
 		StartRotation ();
 	}
@@ -68,7 +69,7 @@ public class Ring : MonoBehaviour
 	{
 		GamePlay.OnScoreUpdatedEvent -= OnScoreUpdated;
 		EGTween.Stop (gameObject);
-		currentRing.SetActive (false);
+		//currentRing.SetActive (false);
 	}
 
 	/// <summary>
@@ -77,13 +78,14 @@ public class Ring : MonoBehaviour
 	/// <param name="score">Score.</param>
 	void OnScoreUpdated (int score)
 	{
+		/*
 		if (score % levelUpOnCount == 0) {
 
 			rotateSpeed += speedIncreaseOnLevelUp;
 			rotateSpeed = Mathf.Clamp(rotateSpeed, minSpeed, maxSpeed);
 
 			UpdateRandomRing();
-		}
+		}  */
 	}
 
 	/// <summary>
@@ -91,10 +93,11 @@ public class Ring : MonoBehaviour
 	/// </summary>
 	void UpdateRandomRing()
 	{
+		/*
 		currentRing.SetActive (false);
 		currentRing = Rings [Random.Range (0, Rings.Count)];
 		currentRing.SetActive (true);
-		StartRotation ();
+		StartRotation ();  */
 	}
 
 	/// <summary>
