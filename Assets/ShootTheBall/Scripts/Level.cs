@@ -17,6 +17,7 @@ public class Level{
 	public EGTween.EaseType ring1animtype;
 	public EGTween.EaseType ring2animtype;
 	public static readonly int TIMEOUT_CRITICAL = 10;
+	public float totalTimeOut;
 
 	public Level() {
 
@@ -56,6 +57,15 @@ public class Level{
 			this.ring2.animType = ring2animtype;
 			ring2.gameObject.transform.localScale = new Vector3 (1.5f, 1.5f, 1);
 		}
+	}
+
+	public void resetTimer() {
+		this.timeOut = totalTimeOut;
+	}
+
+	public bool hasTimeOut() {
+
+		return this.timeOut < 999;
 	}
 
 

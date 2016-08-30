@@ -11,6 +11,6 @@ public class NextLevelScreen : MonoBehaviour {
 		
 	}
 	void OnEnable() {
-		lvlText.text = "LEVEL " + (LevelManager.instance.currentLevelIndex + 1) + " GET READY!";
+		lvlText.text = (LevelManager.instance.currentLevelIndex + 1) + "";
 	}
 }

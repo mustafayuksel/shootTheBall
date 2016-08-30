@@ -31,10 +31,13 @@ public class LevelManager : MonoBehaviour {
 		currentRing = currentLevel.ring;
 		InvokeRepeating ("onTimerTick", 1f, 1f);
 		currentRing.gameObject.SetActive (true);
-		if (ring2 != null) {
+		if (currentLevel.ring2 != null) {
+			
 			ring2 = currentLevel.ring2;
 			ring2.gameObject.SetActive (true);
 		}
+
+
 	}
 
 
@@ -42,32 +45,77 @@ public class LevelManager : MonoBehaviour {
 
 		allLevels = new Level[maxLevel];
 		LevelBuilder builder = new LevelBuilder ();
-		allLevels [0] = builder.setLevel (new Level ()).setRing1 (allRings [2]).setLevelNumber (1).setRing1Direction(1.0f)
-			.setRing1AnimType(EGTween.EaseType.easeOutBack).setRing1MinSpeed (150).setRing1MaxSpeed (150).setLevelUpCount (20)
-			.setTimeOut(40f).build ();
-	
+		allLevels [0] = builder.setLevel (new Level ()).setRing1 (allRings [1]).setLevelNumber (1).setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (50).setRing1MaxSpeed (150).setLevelUpCount (5)
+			.setTimeOut(1000).build ();
+
+			
 
 		allLevels [1] = builder.setLevel (new Level ()).setRing1 (allRings [0]).setLevelNumber (1).setRing1Direction(1.0f)
-			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (50).setRing1MaxSpeed (150).setLevelUpCount (5).build ();
+			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (50).setRing1MaxSpeed (150).setLevelUpCount (5)
+			.setTimeOut(1000).build ();
+		
 
-		allLevels [2] = builder.setLevel (new Level ()).setRing1 (allRings [2]).setLevelNumber (1).setRing1Direction(1.0f)
-			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (50).setRing1MaxSpeed (150).setLevelUpCount (5).build ();
+		allLevels [2] = builder.setLevel (new Level ()).setRing1 (allRings [2]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(40f).build ();
 
-		allLevels [3] = builder.setLevel (new Level ()).setRing1 (allRings [1]).setLevelNumber (1).setRing1Direction(1.0f)
-			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (100).setRing1MaxSpeed (150).setLevelUpCount (5).build ();
+		allLevels [3] =  builder.setLevel (new Level ()).setRing1 (allRings [3]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(40f).build ();
 
 
+		allLevels [4] = builder.setLevel (new Level ()).setRing1 (allRings [1]).setLevelNumber (1).setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.easeInExpo).setRing1MinSpeed (100).setRing1MaxSpeed (150).setLevelUpCount (5)
+			.setTimeOut(1000).build ();
 
-		allLevels [4] = builder.setLevel (new Level ()).setRing1 (allRings [3]).setLevelNumber (1).setRing1Direction(1.0f)
-			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (50).setRing1MaxSpeed (150).setLevelUpCount (5).build ();
+
 
 		allLevels [5] = builder.setLevel (new Level ()).setRing1 (allRings [0]).setLevelNumber (1).setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.easeInOutBack).setRing1MinSpeed (100).setRing1MaxSpeed (150).setLevelUpCount (5)
+			.setTimeOut(1000).build ();
+
+
+		allLevels [6] = builder.setLevel (new Level ()).setRing1 (allRings [2]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.easeOutExpo)
+			.setRing1MinSpeed (100)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(20f).build ();
+
+		allLevels [7] =  builder.setLevel (new Level ()).setRing1 (allRings [3]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (150)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(15f).build ();
+
+
+		allLevels [8] = builder.setLevel (new Level ()).setRing1 (allRings [1]).setRing2(allRings[5]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2Direction(-1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing2AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50).setRing2MinSpeed(20)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(1000).build ();
+
+		allLevels [9] = builder.setLevel (new Level ()).setRing1 (allRings [1]).setLevelNumber (1).setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (50).setRing1MaxSpeed (150).setLevelUpCount (5)
+			.setTimeOut(10).build ();
+		
+		/*
+		allLevels [9] = builder.setLevel (new Level ()).setRing1 (allRings [0]).setLevelNumber (1).setRing1Direction(1.0f)
 			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (100).setRing1MaxSpeed (150).setLevelUpCount (5).build ();
 
-		allLevels [6] = builder.setLevel (new Level ()).setRing1 (allRings [2]).setLevelNumber (1).setRing1Direction(1.0f)
+		allLevels [10] = builder.setLevel (new Level ()).setRing1 (allRings [2]).setLevelNumber (1).setRing1Direction(1.0f)
 			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (100).setRing1MaxSpeed (150).setLevelUpCount (5).build ();
 
-		allLevels [7] = builder.setLevel (new Level ()).setRing1 (allRings [3]).setLevelNumber (1).setRing1Direction(1.0f)
+		allLevels [11] = builder.setLevel (new Level ()).setRing1 (allRings [3]).setLevelNumber (1).setRing1Direction(1.0f)
 			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (100).setRing1MaxSpeed (150).setLevelUpCount (5).build ();
 
 
@@ -97,7 +145,7 @@ public class LevelManager : MonoBehaviour {
 		allLevels [15] = builder.setLevel (new Level ()).setRing1 (allRings [3]).setLevelNumber (1).setRing1Direction(1.0f)
 			.setRing1AnimType(EGTween.EaseType.easeInOutBack).setRing1MinSpeed (150).setRing1MaxSpeed (150).setLevelUpCount (5).build ();
 
-		
+		*/
 
 
 	}
@@ -113,6 +161,8 @@ public class LevelManager : MonoBehaviour {
 			currentRing.gameObject.SetActive (true);
 			if (currentLevel.ring2 != null) {
 				currentLevel.ring2.gameObject.SetActive (true);
+
+			
 			}
 			GameController.instance.OnLevelUp ();
 		} else {
@@ -126,7 +176,7 @@ public class LevelManager : MonoBehaviour {
 			currentLevel.timeOut--;
 			if (currentLevel.timeOut < 0) {
 				TickSoundController.instance.stopTickSound ();
-				currentLevel.timeOut = 40;
+				currentLevel.resetTimer ();
 				GameController.instance.OnGameOver (GameController.instance.LastScreen);
 			}	
 			if (currentLevel.timeOut < Level.TIMEOUT_CRITICAL) {
@@ -141,7 +191,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void stopCountDown() {
 
-		currentLevel.timeOut = 40f;
+		currentLevel.resetTimer ();
 		TickSoundController.instance.stopTickSound ();
 	}
 

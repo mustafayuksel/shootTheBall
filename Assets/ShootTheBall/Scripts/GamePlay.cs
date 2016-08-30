@@ -38,7 +38,9 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	}
 
 	void Update() {
-		clock.fillAmount = LevelManager.instance.currentLevel.timeOut / 80;
+		if (LevelManager.instance.currentLevel.hasTimeOut()) {
+			clock.fillAmount = LevelManager.instance.currentLevel.timeOut / 80;
+		}
 	}
 
 	/// <summary>
@@ -46,8 +48,15 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// </summary>
 	void OnEnable()
 	{
-		clock.fillClockwise = false;
-		clock.fillAmount = LevelManager.instance.currentLevel.timeOut / 80;
+
+		clock.enabled = false;
+		if (LevelManager.instance.currentLevel.hasTimeOut ()) {
+
+			clock.enabled = true;
+			clock.fillClockwise = false;
+			clock.fillAmount = LevelManager.instance.currentLevel.timeOut / 80;
+		}
+
 		isGameOver = false;
 		BGMusicController.instance.StartBGMusic ();
 		bestScore = PlayerPrefs.GetInt ("BestScore", 0);

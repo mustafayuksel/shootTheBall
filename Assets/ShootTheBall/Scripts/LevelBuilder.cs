@@ -70,6 +70,7 @@ public class LevelBuilder {
 	public LevelBuilder setTimeOut(float timeOut) {
 		
 		this.level.timeOut = timeOut;
+		this.level.totalTimeOut = timeOut;
 		return this;
 	}
 
