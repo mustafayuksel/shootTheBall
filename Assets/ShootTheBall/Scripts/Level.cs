@@ -11,6 +11,13 @@ public class Level{
 	public int ring2MinSpeed;
 	public int ring2MaxSpeed;
 	public int levelUpCount;
+	public float timeOut;
+	public float ring1direction;
+	public float ring2direction;
+	public EGTween.EaseType ring1animtype;
+	public EGTween.EaseType ring2animtype;
+	public static readonly int TIMEOUT_CRITICAL = 10;
+
 	public Level() {
 
 	}
@@ -38,12 +45,22 @@ public class Level{
 		this.ring.minSpeed = this.ringMinSpeed;
 		this.ring.maxSpeed = this.ringMaxSpeed;
 		this.ring.rotateSpeed = this.ring.minSpeed;
+		this.ring.direction = ring1direction;
+		this.ring.animType = ring1animtype;
+
 		if (ring2 != null) {
 			this.ring2.minSpeed = ring2MinSpeed;
 			this.ring2.maxSpeed = ring2MaxSpeed;
 			this.ring2.rotateSpeed = ring2MinSpeed;
+			this.ring2.direction = ring2direction;
+			this.ring2.animType = ring2animtype;
+			ring2.gameObject.transform.localScale = new Vector3 (1.5f, 1.5f, 1);
 		}
 	}
+
+
+
+
 
 
 }

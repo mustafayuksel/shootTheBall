@@ -49,6 +49,29 @@ public class LevelBuilder {
 		this.level.levelUpCount = levelUpCount;
 		return this;
 	}
+	public LevelBuilder setRing1Direction(float direction) {
+
+		this.level.ring1direction = direction;
+		return this;
+	}
+	public LevelBuilder setRing2Direction(float direction) {
+		this.level.ring2direction = direction;
+		return this;
+	}
+	public LevelBuilder setRing1AnimType(EGTween.EaseType animType) {
+		this.level.ring1animtype = animType;
+		return this;
+
+	}
+	public LevelBuilder setRing2AnimType(EGTween.EaseType animType) {
+		this.level.ring2animtype = animType;
+		return this;
+	}
+	public LevelBuilder setTimeOut(float timeOut) {
+		
+		this.level.timeOut = timeOut;
+		return this;
+	}
 
 	public Level build() {
 		return this.level;

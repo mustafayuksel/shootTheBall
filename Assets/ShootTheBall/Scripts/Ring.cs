@@ -18,9 +18,13 @@ public class Ring : MonoBehaviour
 	/// The max speed.
 	public float maxSpeed = 150.0F;
 
+	public float direction = 1.0f;
+
 	// how much speed should increase on level up.
 	public float speedIncreaseOnLevelUp = 15.0F;
 
+
+	public EGTween.EaseType animType = EGTween.EaseType.linear;
 	// 1 level will be increase after given count;
 	//public int levelUpOnCount = 5;
 
@@ -105,6 +109,7 @@ public class Ring : MonoBehaviour
 	/// </summary>
 	public void StartRotation()
 	{
-		EGTween.RotateBy (gameObject, EGTween.Hash ("z", 1.0F, "speed",(rotateSpeed), "easeType", EGTween.EaseType.linear, "loopType", EGTween.LoopType.loop));
+
+		EGTween.RotateBy (gameObject, EGTween.Hash ("z", 1.0F * direction, "speed",(rotateSpeed), "easeType", animType, "loopType", EGTween.LoopType.loop));
 	}
 }

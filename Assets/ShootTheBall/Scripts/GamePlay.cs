@@ -15,6 +15,8 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	public AudioClip RingHit;
 	private bool isGameOver = false;
 
+	public Image clock;
+
 	public List<Color> BGColors = new List<Color>();
 
 	[HideInInspector] public int score = 0;
@@ -35,11 +37,17 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 		}
 	}
 
+	void Update() {
+		clock.fillAmount = LevelManager.instance.currentLevel.timeOut / 80;
+	}
+
 	/// <summary>
 	/// Raises the enable event.
 	/// </summary>
 	void OnEnable()
 	{
+		clock.fillClockwise = false;
+		clock.fillAmount = LevelManager.instance.currentLevel.timeOut / 80;
 		isGameOver = false;
 		BGMusicController.instance.StartBGMusic ();
 		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
@@ -71,9 +79,10 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	{
 		isGameOver = true;
 		PlayerPrefs.SetInt ("LastScore", score);
-
+	
 		if (AudioManager.instance.isSoundEnabled) {
 			GetComponent<AudioSource> ().PlayOneShot (RingHit);
+
 		}
 
 		Invoke ("ExecuteGameOver", 1F);
@@ -81,7 +90,9 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 	void ExecuteGameOver()
 	{
+		LevelManager.instance.stopCountDown ();
 		GameController.instance.OnGameOver (gameObject);
+
 	}
 
 	/// <summary>
@@ -92,6 +103,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	{
 		score += count;
 		txtScore.text = score.ToString ("00");
+	
 		//OnScoreUpdatedEvent.Invoke (score);
 
 		if (score >= LevelManager.instance.currentLevel.levelUpCount && !isGameOver) {
