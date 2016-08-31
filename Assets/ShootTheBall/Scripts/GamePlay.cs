@@ -39,7 +39,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 	void Update() {
 		if (LevelManager.instance.currentLevel.hasTimeOut()) {
-			clock.fillAmount = LevelManager.instance.currentLevel.timeOut / 80;
+			clock.fillAmount = LevelManager.instance.currentLevel.timeOut / LevelManager.instance.currentLevel.totalTimeOut;
 		}
 	}
 
