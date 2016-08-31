@@ -74,6 +74,22 @@ public class LevelBuilder {
 		return this;
 	}
 
+	public LevelBuilder setRing1LoopType(EGTween.LoopType loopType) {
+
+		this.level.ring1LoopType = loopType;
+		return this;
+
+	}
+
+	public LevelBuilder setRing2LoopType(EGTween.LoopType loopType) {
+
+		this.level.ring2LoopType = loopType;
+		return this;
+
+	}
+
+
+
 	public Level build() {
 		return this.level;
 	}

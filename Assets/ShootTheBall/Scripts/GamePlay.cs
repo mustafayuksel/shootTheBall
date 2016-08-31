@@ -48,10 +48,11 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// </summary>
 	void OnEnable()
 	{
-
+		LevelManager.instance.currentLevel = LevelManager.instance.allLevels [LevelManager.instance.currentLevelIndex];
 		clock.enabled = false;
 		if (LevelManager.instance.currentLevel.hasTimeOut ()) {
 
+			LevelManager.instance.currentLevel.timerActive = true;
 			clock.enabled = true;
 			clock.fillClockwise = false;
 			clock.fillAmount = LevelManager.instance.currentLevel.timeOut / 80;
@@ -117,7 +118,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 		if (score >= LevelManager.instance.currentLevel.levelUpCount && !isGameOver) {
 			
-			Invoke ("levelUp", 1f);
+			Invoke ("levelUp", 0.5f);
 		}
 
 		if (score > bestScore) {

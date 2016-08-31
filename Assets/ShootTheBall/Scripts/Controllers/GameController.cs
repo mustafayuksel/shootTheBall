@@ -211,6 +211,7 @@ public class GameController : MonoBehaviour
 	public void ResumeGame( GameObject currentScreen)
 	{
 		currentScreen.OnWindowRemove ();
+
 	}
 
 	public void ExitToMainScreenFromPause( GameObject currentScreen)

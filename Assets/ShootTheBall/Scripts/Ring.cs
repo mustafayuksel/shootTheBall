@@ -25,6 +25,8 @@ public class Ring : MonoBehaviour
 
 
 	public EGTween.EaseType animType = EGTween.EaseType.linear;
+
+	public EGTween.LoopType loopType = EGTween.LoopType.loop;
 	// 1 level will be increase after given count;
 	//public int levelUpOnCount = 5;
 
@@ -110,6 +112,6 @@ public class Ring : MonoBehaviour
 	public void StartRotation()
 	{
 
-		EGTween.RotateBy (gameObject, EGTween.Hash ("z", 1.0F * direction, "speed",(rotateSpeed), "easeType", animType, "loopType", EGTween.LoopType.loop));
+		EGTween.RotateBy (gameObject, EGTween.Hash ("z", 1.0F * direction, "speed",(rotateSpeed), "easeType", animType, "loopType", loopType));
 	}
 }
