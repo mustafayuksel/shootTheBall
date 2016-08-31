@@ -62,8 +62,6 @@ public class LevelManager : MonoBehaviour {
 			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (50).setRing1MaxSpeed (150).setLevelUpCount (5)
 			.setTimeOut(1000).build ();
 
-			
-
 		allLevels [1] = builder.setLevel (new Level ()).setRing1 (allRings [0]).setLevelNumber (1).setRing1Direction(1.0f)
 			.setRing1AnimType(EGTween.EaseType.linear).setRing1MinSpeed (50).setRing1MaxSpeed (150).setLevelUpCount (5)
 			.setTimeOut(1000).build ();
@@ -113,7 +111,7 @@ public class LevelManager : MonoBehaviour {
 		allLevels [8] = builder.setLevel (new Level ()).setRing1 (allRings [1]).setRing2(allRings[5]).setLevelNumber (1)
 			.setRing1Direction(1.0f).setRing2Direction(-1.0f)
 			.setRing1AnimType(EGTween.EaseType.linear).setRing2AnimType(EGTween.EaseType.linear)
-			.setRing1MinSpeed (50).setRing2MinSpeed(20)
+			.setRing1MinSpeed (100).setRing2MinSpeed(20)
 			.setRing1MaxSpeed (150).setLevelUpCount (5).
 			setTimeOut(1000).build ();
 
@@ -218,6 +216,31 @@ public class LevelManager : MonoBehaviour {
 			.setRing1MinSpeed (50).setRing2MinSpeed(50).setRing2LoopType(EGTween.LoopType.pingPong)
 			.setRing1MaxSpeed (150).setLevelUpCount (5).
 			setTimeOut(40).build ();
+
+
+		//beğenmezsen uçur reyiz --mustafa
+		allLevels [23] = builder.setLevel (new Level ()).setRing1 (allRings [1]).setRing2(allRings[5]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2Direction(-1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing2AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50).setRing2MinSpeed(20)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(40f).build ();
+
+		//beğenmezsen uçur reyiz --mustafa
+		allLevels [24] = builder.setLevel (new Level ()).setRing1 (allRings [3]).setRing2(allRings[5]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2Direction(-1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing2AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (100).setRing2MinSpeed(20)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(1000).build ();
+
+		//beğenmezsen uçur reyiz --mustafa
+		allLevels [25] = builder.setLevel (new Level ()).setRing1 (allRings [3]).setRing2(allRings[6]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2Direction(-1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing2AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (100).setRing2MinSpeed(20)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(1000).build ();
 
 
 
