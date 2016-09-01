@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour {
 	public Ring[] allRings;
 	public Level[] allLevels;
 	public int maxLevel = 32;
-	public int currentLevelIndex = 10;
+	public int currentLevelIndex = 0;
 	public Level currentLevel;
 	private Ring currentRing;
 	private Ring ring2;
@@ -240,6 +240,9 @@ public class LevelManager : MonoBehaviour {
 			.setRing1MinSpeed (150)
 			.setRing1MaxSpeed (150).setLevelUpCount (10).
 			setTimeOut(10f).build ();
+
+
+
 		
 
 
