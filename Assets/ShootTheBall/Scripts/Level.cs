@@ -65,7 +65,7 @@ public class Level{
 			this.ring2.direction = ring2direction;
 			this.ring2.animType = ring2animtype;
 			this.ring2.loopType = ring2LoopType;
-			ring2.gameObject.transform.localScale = new Vector3 (1.5f, 1.5f, 1);
+			ring2.gameObject.transform.localScale = new Vector3 (1.4f, 1.4f, 1);
 		}
 	}
 

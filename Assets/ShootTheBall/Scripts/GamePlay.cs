@@ -38,8 +38,10 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	}
 
 	void Update() {
-		if (LevelManager.instance.currentLevel.hasTimeOut()) {
-			clock.fillAmount = LevelManager.instance.currentLevel.timeOut / LevelManager.instance.currentLevel.totalTimeOut;
+		if (clock.enabled) {
+			if (LevelManager.instance.currentLevel.hasTimeOut ()) {
+				clock.fillAmount = LevelManager.instance.currentLevel.timeOut / LevelManager.instance.currentLevel.totalTimeOut;
+			}
 		}
 	}
 
@@ -49,6 +51,8 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	void OnEnable()
 	{
 		LevelManager.instance.currentLevel = LevelManager.instance.allLevels [LevelManager.instance.currentLevelIndex];
+		LevelManager.instance.currentLevel.timerActive = true;
+		score = LevelManager.instance.currentLevel.levelUpCount;
 		clock.enabled = false;
 		if (LevelManager.instance.currentLevel.hasTimeOut ()) {
 
@@ -67,7 +71,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 			score = PlayerPrefs.GetInt ("LastScore", 0);
 		} else {
 			SetBackgroundColor ();
-			score = 0;
+			score = LevelManager.instance.currentLevel.levelUpCount;
 		}
 
 		txtScore.text = score.ToString ("00");
@@ -111,20 +115,20 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// <param name="count">Count.</param>
 	public void OnScoreUpdated (int count)
 	{
-		score += count;
+		score -= count;
 		txtScore.text = score.ToString ("00");
 	
 		//OnScoreUpdatedEvent.Invoke (score);
 
-		if (score >= LevelManager.instance.currentLevel.levelUpCount && !isGameOver) {
+		if (score == 0 && !isGameOver) {
 			
 			Invoke ("levelUp", 0.5f);
 		}
 
-		if (score > bestScore) {
+	/*	if (score > bestScore) {
 			bestScore = score;
 			PlayerPrefs.SetInt ("BestScore", bestScore);
-		}
+		}   */
 		if (AudioManager.instance.isSoundEnabled) {
 			GetComponent<AudioSource> ().PlayOneShot (SuccessHit);
 		}
@@ -169,7 +173,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 		if (!isGameOver) {
 			LevelManager.instance.OnLevelUp ();
 			SetBackgroundColor ();
-			score = 0;
+			score = LevelManager.instance.currentLevel.levelUpCount;
 		}
 	}
 }

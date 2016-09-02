@@ -26,11 +26,13 @@ public class LevelManager : MonoBehaviour {
 	void Start() {
 
 		loadAllLevels ();
+	//	resetGame ();
+		currentLevelIndex = PlayerPrefs.GetInt ("level", 0);
 		currentLevel = allLevels [currentLevelIndex];
 		currentLevel.setupRing ();
 		currentRing = currentLevel.ring;
 		InvokeRepeating ("onTimerTick", 1f, 1f);
-		currentLevel.timerActive = true;
+		currentLevel.timerActive = false;
 		currentRing.gameObject.SetActive (true);
 		if (currentLevel.ring2 != null) {
 			
@@ -40,17 +42,11 @@ public class LevelManager : MonoBehaviour {
 
 
 	}
-
-	public void loadNextLevel() {
-
-	}
-
-	public void playAgain() {
-
-	}
+		
 
 	public void resetGame() {
 
+		PlayerPrefs.SetInt ("level", 0);
 	}
 
 
@@ -432,12 +428,16 @@ public class LevelManager : MonoBehaviour {
 			.setRing1MaxSpeed (150).setLevelUpCount (5).
 			setTimeOut(10f).build ();
 
-		allLevels [49] = builder.setLevel (new Level ()).setRing1 (allRings [11])
+		allLevels [24] = builder.setLevel (new Level ()).setRing1 (allRings [11])
 			.setRing1Direction(1.0f)
 			.setRing1AnimType(EGTween.EaseType.linear)
 			.setRing1MinSpeed (50)
 			.setRing1MaxSpeed (150).setLevelUpCount (2).
 			setTimeOut(20).build ();
+
+
+
+
 
 
 	}
@@ -446,6 +446,7 @@ public class LevelManager : MonoBehaviour {
 		if (GamePlay.instance.isGamePlay) {
 			currentLevelIndex++;
 			if (currentLevelIndex < maxLevel) {
+				PlayerPrefs.SetInt ("level", currentLevelIndex);
 				GameObject oldRing = currentLevel.ring.gameObject;
 				if (currentLevel.ring2 != null) {
 					currentLevel.ring2.gameObject.SetActive (false);
@@ -489,6 +490,7 @@ public class LevelManager : MonoBehaviour {
 	public void stopCountDown() {
 
 		currentLevel.resetTimer ();
+		currentLevel.timerActive = false;
 		TickSoundController.instance.stopTickSound ();
 	}
 

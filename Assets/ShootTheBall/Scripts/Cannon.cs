@@ -69,10 +69,12 @@ public class Cannon : MonoBehaviour
 	/// </summary>
 	public void FireBall()
 	{
-		FiringBall = FirePool.instance.GetNextBall ();
-		FiringBall.SetActive (true);
-		Vector2 direction = (CannonPoint.transform.position - transform.position).normalized;
-		FiringBall.GetComponent<Rigidbody2D>().AddForce ((direction * travelSpeed), ForceMode2D.Impulse);
+		if (GamePlay.instance.score > 0) {
+			FiringBall = FirePool.instance.GetNextBall ();
+			FiringBall.SetActive (true);
+			Vector2 direction = (CannonPoint.transform.position - transform.position).normalized;
+			FiringBall.GetComponent<Rigidbody2D> ().AddForce ((direction * travelSpeed), ForceMode2D.Impulse);
+		}
 	}
 
 	/// <summary>

@@ -181,7 +181,8 @@ public class GameController : MonoBehaviour
 	public void StartGamePlay( GameObject currentScreen )
 	{
 		currentScreen.SetActive (false);
-		SpawnUIScreen ("GamePlay");
+		SpawnUIScreen ("NextLevel");
+		Invoke ("ContinueGamePlay", 2f);
 	}
 
 	/// <summary>
