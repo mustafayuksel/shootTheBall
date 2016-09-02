@@ -72,7 +72,7 @@ public class LevelManager : MonoBehaviour {
 			.setRing1AnimType(EGTween.EaseType.linear)
 			.setRing1MinSpeed (50)
 			.setRing1MaxSpeed (150).setLevelUpCount (5).
-			setTimeOut(10f).build ();
+			setTimeOut(1000f).build ();
 
 		allLevels [3] =  builder.setLevel (new Level ()).setRing1 (allRings [3]).setLevelNumber (1)
 			.setRing1Direction(1.0f)
@@ -98,7 +98,7 @@ public class LevelManager : MonoBehaviour {
 			.setRing1AnimType(EGTween.EaseType.easeOutExpo)
 			.setRing1MinSpeed (100)
 			.setRing1MaxSpeed (150).setLevelUpCount (5).
-			setTimeOut(20f).build ();
+			setTimeOut(1000f).build ();
 
 		allLevels [7] =  builder.setLevel (new Level ()).setRing1 (allRings [3]).setLevelNumber (1)
 			.setRing1Direction(1.0f)
@@ -144,7 +144,7 @@ public class LevelManager : MonoBehaviour {
 			.setRing1AnimType(EGTween.EaseType.linear)
 			.setRing1MinSpeed (100)
 			.setRing1MaxSpeed (150).setLevelUpCount (10).
-			setTimeOut(10f).build ();
+			setTimeOut(1000f).build ();
 
 
 
@@ -237,18 +237,207 @@ public class LevelManager : MonoBehaviour {
 		allLevels [25] = builder.setLevel (new Level ()).setRing1 (allRings [2]).setLevelNumber (1)
 			.setRing1Direction(1.0f)
 			.setRing1AnimType(EGTween.EaseType.linear)
-			.setRing1MinSpeed (150)
+			.setRing1MinSpeed (50)
 			.setRing1MaxSpeed (150).setLevelUpCount (10).
 			setTimeOut(10f).build ();
 
 
 
+		allLevels [26] = builder.setLevel (new Level ()).setRing1 (allRings [8]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (150)
+			.setRing1MaxSpeed (150).setLevelUpCount (10).
+			setTimeOut(20f).build ();
+
+
+
+		allLevels [27] = builder.setLevel (new Level ()).setRing1 (allRings [9]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (4).
+			setTimeOut(15f).build ();
+
+
+		allLevels [28] = builder.setLevel (new Level ()).setRing1 (allRings [10]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(1000f).build ();
+
+
+		allLevels [29] = builder.setLevel (new Level ()).setRing1 (allRings [10]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (100)
+			.setRing1MaxSpeed (150).setLevelUpCount (3).
+			setTimeOut(1000f).build ();
+
+
+
+		allLevels [30] = builder.setLevel (new Level ()).setRing1 (allRings [8]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.easeInExpo).setRing1LoopType(EGTween.LoopType.pingPong)
+			.setRing1MinSpeed (150)
+			.setRing1MaxSpeed (150).setLevelUpCount (8).
+			setTimeOut(15f).build ();
+
+
+		allLevels [31] = builder.setLevel (new Level ()).setRing1 (allRings [10]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2(allRings[1])
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (3).
+			setTimeOut(1000f).build ();
 		
 
+		allLevels [32] = builder.setLevel (new Level ()).setRing1 (allRings [9]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (4).
+			setTimeOut(15f).build ();
 
+		allLevels [33] = builder.setLevel (new Level ()).setRing1 (allRings [0]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (150)
+			.setRing1MaxSpeed (150).setLevelUpCount (15).
+			setTimeOut(15f).build ();
+
+		allLevels [34] = builder.setLevel (new Level ()).setRing1 (allRings [10]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (100)
+			.setRing1MaxSpeed (150).setLevelUpCount (10).
+			setTimeOut(1000f).build ();
+
+		allLevels [35] = builder.setLevel (new Level ()).setRing1 (allRings [0]).setRing2(allRings[6]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2Direction(-1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing2AnimType(EGTween.EaseType.linear).setRing1LoopType(EGTween.LoopType.loop)
+			.setRing1MinSpeed (100).setRing2MinSpeed(50).setRing2LoopType(EGTween.LoopType.loop)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(1000f).build ();
+
+		allLevels [36] =  builder.setLevel (new Level ()).setRing1 (allRings [3]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (150)
+			.setRing1MaxSpeed (150).setLevelUpCount (20).setRing1LoopType(EGTween.LoopType.loop).
+			setTimeOut(15f).build ();
+
+
+		allLevels [37] = builder.setLevel (new Level ()).setRing1 (allRings [10]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing1LoopType(EGTween.LoopType.loop)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (10).
+			setTimeOut(15f).build ();
+
+	
+
+		allLevels [38] = builder.setLevel (new Level ()).setRing1 (allRings [10]).setLevelNumber (1)
+			.setRing1Direction (1.0f).setRing2 (allRings [1]).setRing2MinSpeed (20)
+			.setRing2AnimType(EGTween.EaseType.linear).setRing2Direction(-1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(1000f).build ();
 
 
 	
+
+		allLevels [39] = builder.setLevel (new Level ()).setRing1 (allRings [1]).setRing2(allRings[7]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2Direction(-1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing2AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (150).setRing2MinSpeed(50)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(20).build ();
+
+
+		allLevels [40] = builder.setLevel (new Level ()).setRing1 (allRings [11])
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (1).
+			setTimeOut(1000f).build ();
+	
+
+		allLevels [41] = builder.setLevel (new Level ()).setRing1 (allRings [2]).setRing2(allRings[8]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (150)
+			.setRing1MaxSpeed (150).setLevelUpCount (10).
+			setTimeOut(1000f).build ();
+
+
+		allLevels [42] = builder.setLevel (new Level ()).setRing1 (allRings [2])
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (150)
+			.setRing1MaxSpeed (150).setLevelUpCount (10).
+			setTimeOut(5f).build ();
+
+
+		allLevels [43] = builder.setLevel (new Level ()).setRing1 (allRings [11])
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (2).
+			setTimeOut(1000f).build ();
+
+		allLevels [44] = builder.setLevel (new Level ()).setRing1 (allRings [10]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2(allRings[1])
+			.setRing1AnimType(EGTween.EaseType.linear).setRing2Direction(-1.0f)
+			.setRing1MinSpeed (150)
+			.setRing2AnimType(EGTween.EaseType.linear)
+			.setRing2MinSpeed(20)
+			.setRing1MaxSpeed (150).setLevelUpCount (2).
+			setTimeOut(1000f).build ();
+
+		allLevels [45] = builder.setLevel (new Level ()).setRing1 (allRings [10]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2(allRings[1])
+			.setRing1AnimType(EGTween.EaseType.linear).setRing2Direction(-1.0f)
+			.setRing1MinSpeed (150)
+			.setRing2AnimType(EGTween.EaseType.linear)
+			.setRing2MinSpeed(20)
+			.setRing1MaxSpeed (150).setLevelUpCount (2).
+			setTimeOut(1000f).build ();
+
+	
+		allLevels [46] = builder.setLevel (new Level ()).setRing1 (allRings [2]).setRing2(allRings[8]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing2Direction(-1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing2MinSpeed(50)
+			.setRing2AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (150)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(1000f).build ();
+
+
+		allLevels [47] = builder.setLevel (new Level ()).setRing1 (allRings [9]).setRing2(allRings[8]).setLevelNumber (1)
+			.setRing1Direction(1.0f).setRing2Direction(-1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing2AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50).setRing2MinSpeed(20)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(15).build ();
+
+		allLevels [48] = builder.setLevel (new Level ()).setRing1 (allRings [9]).setLevelNumber (1)
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear).setRing1LoopType(EGTween.LoopType.loop)
+			.setRing1MinSpeed (100)
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
+			setTimeOut(10f).build ();
+
+		allLevels [49] = builder.setLevel (new Level ()).setRing1 (allRings [11])
+			.setRing1Direction(1.0f)
+			.setRing1AnimType(EGTween.EaseType.linear)
+			.setRing1MinSpeed (50)
+			.setRing1MaxSpeed (150).setLevelUpCount (2).
+			setTimeOut(20).build ();
 
 
 	}
