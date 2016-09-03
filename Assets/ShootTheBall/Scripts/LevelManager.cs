@@ -25,20 +25,12 @@ public class LevelManager : MonoBehaviour {
 		
 	void Start() {
 
+
+		Debug.Log ("Start");
 		loadAllLevels ();
 	//	resetGame ();
 		currentLevelIndex = PlayerPrefs.GetInt ("level", 0);
-		currentLevel = allLevels [currentLevelIndex];
-		currentLevel.setupRing ();
-		currentRing = currentLevel.ring;
-		InvokeRepeating ("onTimerTick", 1f, 1f);
-		currentLevel.timerActive = false;
-		currentRing.gameObject.SetActive (true);
-		if (currentLevel.ring2 != null) {
-			
-			ring2 = currentLevel.ring2;
-			ring2.gameObject.SetActive (true);
-		}
+		setCurrentLevel (currentLevelIndex);
 
 
 	}
@@ -428,7 +420,7 @@ public class LevelManager : MonoBehaviour {
 			.setRing1MaxSpeed (150).setLevelUpCount (5).
 			setTimeOut(10f).build ();
 
-		allLevels [24] = builder.setLevel (new Level ()).setRing1 (allRings [11])
+		allLevels [49] = builder.setLevel (new Level ()).setRing1 (allRings [11])
 			.setRing1Direction(1.0f)
 			.setRing1AnimType(EGTween.EaseType.linear)
 			.setRing1MinSpeed (50)
@@ -443,22 +435,15 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void OnLevelUp() {
+		Debug.Log ("On level Up");
 		if (GamePlay.instance.isGamePlay) {
 			currentLevelIndex++;
 			if (currentLevelIndex < maxLevel) {
-				PlayerPrefs.SetInt ("level", currentLevelIndex);
-				GameObject oldRing = currentLevel.ring.gameObject;
-				if (currentLevel.ring2 != null) {
-					currentLevel.ring2.gameObject.SetActive (false);
+				int lastLevel = PlayerPrefs.GetInt ("level", 0);
+				if (lastLevel < currentLevelIndex) {
+					PlayerPrefs.SetInt ("level", currentLevelIndex);
 				}
-				oldRing.SetActive (false);
-				currentLevel = allLevels [currentLevelIndex];
-				currentLevel.setupRing (); // Aynı ringleri kullandığımız için son objenin hız değerlerini alıyor(du)
-				currentRing = currentLevel.ring;
-				currentRing.gameObject.SetActive (true);
-				if (currentLevel.ring2 != null) {
-					currentLevel.ring2.gameObject.SetActive (true);
-				}
+				setCurrentLevel (currentLevelIndex);
 				stopCountDown ();
 				GameController.instance.OnLevelUp ();
 			} else {
@@ -492,6 +477,31 @@ public class LevelManager : MonoBehaviour {
 		currentLevel.resetTimer ();
 		currentLevel.timerActive = false;
 		TickSoundController.instance.stopTickSound ();
+	}
+
+	public void setCurrentLevel(int levelNum) {
+
+		if (currentLevel != null) {
+			if (currentLevel.ring != null) {
+				GameObject oldRing = currentLevel.ring.gameObject;
+				oldRing.SetActive (false);
+			}
+			if (currentLevel.ring2 != null) {
+				currentLevel.ring2.gameObject.SetActive (false);
+			}
+		}
+		currentLevelIndex = levelNum;
+		currentLevel = allLevels [currentLevelIndex];
+		currentLevel.setupRing ();
+		currentRing = currentLevel.ring;
+		currentLevel.timerActive = false;
+		currentRing.gameObject.SetActive (true);
+		if (currentLevel.ring2 != null) {
+
+			ring2 = currentLevel.ring2;
+			ring2.gameObject.SetActive (true);
+		}
+
 	}
 
 

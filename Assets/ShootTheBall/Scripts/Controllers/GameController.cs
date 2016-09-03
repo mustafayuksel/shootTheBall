@@ -268,4 +268,11 @@ public class GameController : MonoBehaviour
 		currentScreen.SetActive (false);
 		SpawnUIScreen ("EndOfGame");
 	}
+
+	public void OnStarButtonPressed() {
+
+		GameObject currentScreen = this.LastScreen;
+		currentScreen.SetActive (false);
+		SpawnUIScreen ("ChooseLevel");
+	}
 }

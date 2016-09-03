@@ -29,16 +29,17 @@ public class LevelChooser : MonoBehaviour {
 			if (imageLevel > currentLevel) {
 
 				img.color = dark;
-			}
+				allImages [i].GetComponent<Button> ().enabled = false;
+			} 
 
 		}
 	
 	}
 
 	public void OnImageClick(int levelNum) {
-		Debug.Log ("Clicked:" + levelNum);
-	//TO-DO
-	//	GamePlay.instance.loadLevel (levelNum);
+
+		LevelManager.instance.setCurrentLevel (levelNum);
+		GameController.instance.StartGamePlay (GameController.instance.LastScreen);
 
 	}
 }

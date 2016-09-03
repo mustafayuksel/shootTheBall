@@ -50,7 +50,10 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// </summary>
 	void OnEnable()
 	{
+
+		Debug.Log ("Current Level Index:" + LevelManager.instance.currentLevelIndex);
 		LevelManager.instance.currentLevel = LevelManager.instance.allLevels [LevelManager.instance.currentLevelIndex];
+
 		LevelManager.instance.currentLevel.timerActive = true;
 		score = LevelManager.instance.currentLevel.levelUpCount;
 		clock.enabled = false;
@@ -175,5 +178,12 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 			SetBackgroundColor ();
 			score = LevelManager.instance.currentLevel.levelUpCount;
 		}
+	}
+
+	public void loadLevel(int levelNum) {
+
+		Debug.Log ("loadLevel");
+		LevelManager.instance.setCurrentLevel (levelNum);
+		GameController.instance.ReloadGame (GameController.instance.LastScreen);
 	}
 }
