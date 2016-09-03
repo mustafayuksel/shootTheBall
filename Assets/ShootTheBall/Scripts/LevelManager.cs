@@ -440,7 +440,8 @@ public class LevelManager : MonoBehaviour {
 			currentLevelIndex++;
 			if (currentLevelIndex < maxLevel) {
 				int lastLevel = PlayerPrefs.GetInt ("level", 0);
-				if (lastLevel < currentLevelIndex) {
+				if (lastLevel < currentLevelIndex + 1) {
+					Debug.Log ("Current level set");
 					PlayerPrefs.SetInt ("level", currentLevelIndex);
 				}
 				setCurrentLevel (currentLevelIndex);
@@ -463,9 +464,8 @@ public class LevelManager : MonoBehaviour {
 				GameController.instance.OnGameOver (GameController.instance.LastScreen);
 			}	
 			if (currentLevel.timeOut < Level.TIMEOUT_CRITICAL) {
-					
-				if (AudioManager.instance.isSoundEnabled) {
 
+				if (AudioManager.instance.isSoundEnabled) {
 					TickSoundController.instance.startTickSound ();
 				}
 			}
@@ -474,6 +474,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void stopCountDown() {
 
+		CancelInvoke ();
 		currentLevel.resetTimer ();
 		currentLevel.timerActive = false;
 		TickSoundController.instance.stopTickSound ();
@@ -501,7 +502,13 @@ public class LevelManager : MonoBehaviour {
 			ring2 = currentLevel.ring2;
 			ring2.gameObject.SetActive (true);
 		}
+		currentLevel.resetTimer ();
 
+	}
+
+	public void startCountDown() {
+		currentLevel.timerActive = true;
+		InvokeRepeating ("onTimerTick", 1f, 1f);
 	}
 
 

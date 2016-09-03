@@ -17,9 +17,11 @@ public class LevelChooser : MonoBehaviour {
 	}
 
 	void OnEnable() {
+		Debug.Log ("Level chooser enable");
 		//
 		GameObject[] allImages = GameObject.FindGameObjectsWithTag ("LvlImage");
 		int currentLevel = PlayerPrefs.GetInt ("level", 0) + 1;//Preferences'ta index olarak tutuyoruz
+		Debug.Log(currentLevel);
 		int imageLevelNumber;
 
 		for (int i = 0; i < allImages.Length; i++) {
@@ -30,7 +32,10 @@ public class LevelChooser : MonoBehaviour {
 
 				img.color = dark;
 				allImages [i].GetComponent<Button> ().enabled = false;
-			} 
+			} else {
+				img.color = Color.white;
+				allImages [i].GetComponent<Button> ().enabled = true;
+			}
 
 		}
 	

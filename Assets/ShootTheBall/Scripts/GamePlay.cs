@@ -53,13 +53,12 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 		Debug.Log ("Current Level Index:" + LevelManager.instance.currentLevelIndex);
 		LevelManager.instance.currentLevel = LevelManager.instance.allLevels [LevelManager.instance.currentLevelIndex];
-
-		LevelManager.instance.currentLevel.timerActive = true;
+		LevelManager.instance.startCountDown ();
 		score = LevelManager.instance.currentLevel.levelUpCount;
 		clock.enabled = false;
 		if (LevelManager.instance.currentLevel.hasTimeOut ()) {
 
-			LevelManager.instance.currentLevel.timerActive = true;
+		//	LevelManager.instance.currentLevel.timerActive = true;
 			clock.enabled = true;
 			clock.fillClockwise = false;
 			clock.fillAmount = LevelManager.instance.currentLevel.timeOut / 80;
