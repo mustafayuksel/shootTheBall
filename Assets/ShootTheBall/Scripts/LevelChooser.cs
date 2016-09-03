@@ -43,6 +43,7 @@ public class LevelChooser : MonoBehaviour {
 
 	public void OnImageClick(int levelNum) {
 
+
 		LevelManager.instance.setCurrentLevel (levelNum);
 		GameController.instance.StartGamePlay (GameController.instance.LastScreen);
 
