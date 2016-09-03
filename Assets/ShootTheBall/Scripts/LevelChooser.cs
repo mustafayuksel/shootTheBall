@@ -6,7 +6,7 @@ public class LevelChooser : MonoBehaviour {
 
 	//Üzerine tıklanan level'a gitme olayı ve geçilen level'ları aktif etme
 	// Use this for initialization
-	Color dark = new Color (0.2f, 0.2f, 0.2f);
+	Color dark = new Color (0.4f, 0.4f, 0.4f);
 	void Start () {
 	
 	}
@@ -43,7 +43,7 @@ public class LevelChooser : MonoBehaviour {
 
 	public void OnImageClick(int levelNum) {
 
-
+		 
 		LevelManager.instance.setCurrentLevel (levelNum);
 		GameController.instance.StartGamePlay (GameController.instance.LastScreen);
 

@@ -106,6 +106,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 	void ExecuteGameOver()
 	{
+		LeaderBoard.instance.postScore ();
 		LevelManager.instance.stopCountDown ();
 		GameController.instance.OnGameOver (gameObject);
 
