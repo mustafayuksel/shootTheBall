@@ -232,7 +232,7 @@ public class GameController : MonoBehaviour
 
 	public void Tutorial1() {
 
-		SpawnUIScreen ("Tutorail1");
+		SpawnUIScreen ("Tutorial1");
 	}
 
 	public void Tutorial2() {

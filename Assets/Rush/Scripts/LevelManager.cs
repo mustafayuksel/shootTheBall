@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour {
 
 		Debug.Log ("Start");
 		loadAllLevels ();
-	//	resetGame ();
+		//resetGame ();
 		currentLevelIndex = PlayerPrefs.GetInt ("level", 0);
 		setCurrentLevel (currentLevelIndex);
 
@@ -39,6 +39,8 @@ public class LevelManager : MonoBehaviour {
 	public void resetGame() {
 
 		PlayerPrefs.SetInt ("level", 0);
+		PlayerPrefs.SetInt ("tutorial1", 0);
+		PlayerPrefs.SetInt ("tutorial2", 0);
 	}
 
 
@@ -456,7 +458,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void onTimerTick() {
 
-		if (currentLevel.hasTimeOut() && currentLevel.timerActive) {
+		if (currentLevel.hasTimeOut() && currentLevel.timerActive && !GameController.instance.isGamePaused) {
 			currentLevel.timeOut--;
 			if (currentLevel.timeOut < 0) {
 				TickSoundController.instance.stopTickSound ();

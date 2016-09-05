@@ -83,6 +83,12 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 		if (LevelManager.instance.currentLevelIndex == 0 && isTutorial1Shown == 0) {
 
+			Invoke ("showTutorial1", 2f);
+		}
+		if (LevelManager.instance.currentLevelIndex == 3 && isTutorial2Shown == 0) {
+
+			Invoke ("showTutorial2", 2f);
+
 		}
 		txtScore.text = score.ToString ("00");
 		Invoke ("ResetPrefs", 1F);
@@ -114,7 +120,9 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 	void ExecuteGameOver()
 	{
+		#if !UNITY_EDITOR
 		LeaderBoard.instance.postScore ();
+		#endif
 		LevelManager.instance.stopCountDown ();
 		GameController.instance.OnGameOver (gameObject);
 
@@ -150,7 +158,9 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// </summary>
 	void SetBackgroundColor()
 	{
-		sp_background.color = BGColors [UnityEngine.Random.Range (0, BGColors.Count)];;
+		//sp_background.color = BGColors [UnityEngine.Random.Range (0, BGColors.Count)];;
+
+		sp_background.color = BGColors [0];
 	}
 
 
@@ -196,6 +206,17 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	}
 
 	public void showTutorial1() {
+		if (!isGameOver) {
+			GameController.instance.Tutorial1 ();
+			PlayerPrefs.SetInt ("tutorial1", 1);
+		}
+	}
+	public void showTutorial2() {
 
+		if (!isGameOver) {
+
+			GameController.instance.Tutorial2 ();
+			PlayerPrefs.SetInt ("tutorial2", 1);
+		}
 	}
 }

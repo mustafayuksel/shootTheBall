@@ -32,6 +32,8 @@ public class GameOver : MonoBehaviour
 			transform.FindChild("Bottom-Panel/btn-rescue").gameObject.SetActive(false);
 		}
 		#endif
+
+		GoogleAdsense.instance.showInterstitialAd ();
 	}
 
 	/// <summary>

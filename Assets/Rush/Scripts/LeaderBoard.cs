@@ -25,12 +25,7 @@ public class LeaderBoard : MonoBehaviour {
 		PlayGamesPlatform.Activate ();
 
 		Social.localUser.Authenticate ((bool success) => {
-			if(success) {
-
-				loginTest.text = "Login Successful";
-			} else {
-				loginTest.text = "Login Unsuccesful";
-			}
+			
 		});
 		if (instance == null) {
 			instance = this;
@@ -57,12 +52,6 @@ public class LeaderBoard : MonoBehaviour {
 	public void login() {
 		if (!Social.localUser.authenticated) {
 			Social.localUser.Authenticate ((bool success) => {
-				if(success) {
-
-				loginTest.text = "Login Successful";
-				} else {
-					loginTest.text = "Login Unsuccesful";
-				}
 			});
 		}
 	}
