@@ -14,6 +14,8 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	public AudioClip SuccessHit;
 	public AudioClip RingHit;
 	private bool isGameOver = false;
+	private int isTutorial1Shown;
+	private int isTutorial2Shown;
 
 	public Image clock;
 
@@ -22,6 +24,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	[HideInInspector] public int score = 0;
 	[HideInInspector] public int bestScore = 0;
 	[HideInInspector] public bool isGamePlay; 
+
 
 	// event for score updation.
 	public static event Action<int> OnScoreUpdatedEvent;
@@ -50,7 +53,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// </summary>
 	void OnEnable()
 	{
-
+		
 		Debug.Log ("Current Level Index:" + LevelManager.instance.currentLevelIndex);
 		LevelManager.instance.currentLevel = LevelManager.instance.allLevels [LevelManager.instance.currentLevelIndex];
 		LevelManager.instance.startCountDown ();
@@ -75,7 +78,12 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 			SetBackgroundColor ();
 			score = LevelManager.instance.currentLevel.levelUpCount;
 		}
+		isTutorial1Shown = PlayerPrefs.GetInt ("tutorial1", 0);
+		isTutorial2Shown = PlayerPrefs.GetInt ("tutorial2");
 
+		if (LevelManager.instance.currentLevelIndex == 0 && isTutorial1Shown == 0) {
+
+		}
 		txtScore.text = score.ToString ("00");
 		Invoke ("ResetPrefs", 1F);
 	}
@@ -185,5 +193,9 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 		Debug.Log ("loadLevel");
 		LevelManager.instance.setCurrentLevel (levelNum);
 		GameController.instance.ReloadGame (GameController.instance.LastScreen);
+	}
+
+	public void showTutorial1() {
+
 	}
 }

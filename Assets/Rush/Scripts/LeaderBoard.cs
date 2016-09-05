@@ -17,6 +17,21 @@ public class LeaderBoard : MonoBehaviour {
 
 
 	void Awake() {
+
+		PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder ()
+			.Build ();
+		PlayGamesPlatform.InitializeInstance (config);
+		PlayGamesPlatform.DebugLogEnabled = true;
+		PlayGamesPlatform.Activate ();
+
+		Social.localUser.Authenticate ((bool success) => {
+			if(success) {
+
+				loginTest.text = "Login Successful";
+			} else {
+				loginTest.text = "Login Unsuccesful";
+			}
+		});
 		if (instance == null) {
 			instance = this;
 			return;
@@ -26,11 +41,7 @@ public class LeaderBoard : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder ()
-			.EnableSavedGames ().Build ();
-		PlayGamesPlatform.InitializeInstance (config);
-		PlayGamesPlatform.DebugLogEnabled = true;
-		PlayGamesPlatform.Activate ();
+
 	}
 	
 	// Update is called once per frame
@@ -47,9 +58,10 @@ public class LeaderBoard : MonoBehaviour {
 		if (!Social.localUser.authenticated) {
 			Social.localUser.Authenticate ((bool success) => {
 				if(success) {
+
 				loginTest.text = "Login Successful";
 				} else {
-					loginTest.text = "Login Unsuccessful";
+					loginTest.text = "Login Unsuccesful";
 				}
 			});
 		}

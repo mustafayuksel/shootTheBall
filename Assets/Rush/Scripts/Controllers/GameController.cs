@@ -230,6 +230,15 @@ public class GameController : MonoBehaviour
 		SpawnUIScreen ("Pause");
 	}
 
+	public void Tutorial1() {
+
+		SpawnUIScreen ("Tutorail1");
+	}
+
+	public void Tutorial2() {
+		SpawnUIScreen ("Tutorial2");
+	}
+
 	/// <summary>
 	/// Exits to main screen from game over.
 	/// </summary>
