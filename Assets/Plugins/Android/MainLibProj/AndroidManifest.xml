@@ -4,7 +4,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.google.example.games.mainlibproj"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1" >
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16" />
 
@@ -16,7 +16,7 @@
 
         <!-- the space in these forces it to be interpreted as a string vs. int -->
         <meta-data android:name="com.google.android.gms.games.APP_ID"
-            android:value="\ 755574887479" />
+            android:value="\ 155894442178" />
         <meta-data android:name="com.google.android.gms.games.unityVersion"
             android:value="\ 0.9.34" />
         <meta-data android:name="com.google.android.gms.version"

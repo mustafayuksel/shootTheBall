@@ -3,12 +3,17 @@ using System.Collections;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
+using UnityEngine.UI;
 
 public class LeaderBoard : MonoBehaviour {
 
 
 
 	public static LeaderBoard instance;
+
+	public Text loginTest;
+	private string leaderboardId = "CgkIwtGh4MQEEAIQAg";
+
 
 
 	void Awake() {
@@ -26,15 +31,6 @@ public class LeaderBoard : MonoBehaviour {
 		PlayGamesPlatform.InitializeInstance (config);
 		PlayGamesPlatform.DebugLogEnabled = true;
 		PlayGamesPlatform.Activate ();
-		Social.localUser.Authenticate ((bool success) => {
-
-			if(success) {
-			Debug.Log("Logged In");
-			Social.ShowLeaderboardUI ();
-			}
-		});
-
-	
 	}
 	
 	// Update is called once per frame
@@ -42,12 +38,31 @@ public class LeaderBoard : MonoBehaviour {
 	
 	}
 
+	public void showLeaderBoardUI() {
+
+		((PlayGamesPlatform)Social.Active).ShowLeaderboardUI (leaderboardId); 
+
+	}
+	public void login() {
+		if (!Social.localUser.authenticated) {
+			Social.localUser.Authenticate ((bool success) => {
+				if(success) {
+				loginTest.text = "Login Successful";
+				} else {
+					loginTest.text = "Login Unsuccessful";
+				}
+			});
+		}
+	}
+
 	public void postScore() {
 
-		int maxScore = PlayerPrefs.GetInt ("level", 0) + 1;
-		Social.ReportScore (maxScore,"CgkIt6iX3v4VEAIQAA",(bool success)=> {
-			Debug.Log("Score is post");
-		});
 
+		if (Social.localUser.authenticated) {
+			int maxScore = PlayerPrefs.GetInt ("level", 0) + 1;
+			Social.ReportScore (maxScore, leaderboardId, (bool success) => {
+
+			});
+		}
 	}
 }
