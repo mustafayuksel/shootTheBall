@@ -10,6 +10,8 @@ public class GameOver : MonoBehaviour
 	// The Best score text 
 	public Text txtBestScore;
 
+	public Button rescueButton;
+
 	public AudioClip GameOverAudio;
 
 	/// <summary>
@@ -33,7 +35,13 @@ public class GameOver : MonoBehaviour
 		}
 		#endif
 
-		GoogleAdsense.instance.showInterstitialAd ();
+		if (PlayerPrefs.GetInt ("isRescued", 0) == 0) {
+			rescueButton.gameObject.SetActive (true);
+		} else {
+			rescueButton.gameObject.SetActive (false);
+
+		}
+
 	}
 
 	/// <summary>
@@ -42,9 +50,11 @@ public class GameOver : MonoBehaviour
 	public void OnReplayButtonPressed ()
 	{
 		if (InputManager.instance.canInput ()) {
+			GamePlay.instance.ResetPrefs ();
 			InputManager.instance.DisableTouchForDelay ();
 			InputManager.instance.AddButtonTouchEffect ();
 			GameController.instance.ReloadGame(gameObject);
+
 		}
 	}
 
@@ -72,20 +82,10 @@ public class GameOver : MonoBehaviour
 			BGMusicController.instance.StopBGMusic ();	
 
 			#if UNITY_ANDROID || UNITY_IOS
-			UnityAds.instance.ShowAdsWithResult ("", result => 
-			{
-				if(result == true)
-				{
-					//Rescue Successful
-					PlayerPrefs.SetInt("isRescued",1);
-					GameController.instance.ReloadGame(gameObject);
-
-				}
-				else 
-				{
-					//Rescue Failed
-				}
-			});
+			GoogleAdsense.instance.showInterstitialAd();
+			PlayerPrefs.SetFloat("timeout",LevelManager.instance.currentLevel.timeOut);
+			PlayerPrefs.SetInt("isRescued",1);
+			GameController.instance.ReloadGame(gameObject);
 			#endif
 		}
 	}

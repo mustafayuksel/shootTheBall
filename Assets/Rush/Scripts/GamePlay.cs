@@ -53,10 +53,12 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// </summary>
 	void OnEnable()
 	{
-		
+		CancelInvoke ();
 		Debug.Log ("Current Level Index:" + LevelManager.instance.currentLevelIndex);
 		LevelManager.instance.currentLevel = LevelManager.instance.allLevels [LevelManager.instance.currentLevelIndex];
+		LevelManager.instance.currentLevel.resetTimer ();
 		LevelManager.instance.startCountDown ();
+	
 		score = LevelManager.instance.currentLevel.levelUpCount;
 		clock.enabled = false;
 		if (LevelManager.instance.currentLevel.hasTimeOut ()) {
@@ -73,7 +75,9 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 		isGamePlay = true;
 
 		if (PlayerPrefs.GetInt ("isRescued", 0) == 1) {
-			score = PlayerPrefs.GetInt ("LastScore", 0);
+	
+			score = PlayerPrefs.GetInt ("LastScore", LevelManager.instance.currentLevel.levelUpCount);
+			LevelManager.instance.currentLevel.timeOut = PlayerPrefs.GetFloat ("timeout");
 		} else {
 			SetBackgroundColor ();
 			score = LevelManager.instance.currentLevel.levelUpCount;
@@ -91,13 +95,13 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 		}
 		txtScore.text = score.ToString ("00");
-		Invoke ("ResetPrefs", 1F);
 	}
+		
 
 	/// <summary>
 	/// Resets the prefs.
 	/// </summary>
-	void ResetPrefs(){
+	public void ResetPrefs(){
 		PlayerPrefs.DeleteKey ("LastScore");
 		PlayerPrefs.DeleteKey ("isRescued");
 	}
@@ -120,9 +124,15 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 
 	void ExecuteGameOver()
 	{
-		#if !UNITY_EDITOR
+		/// <summary>>
+		/// Shows full page add with the probability of %10
+		/// </summary>
+		int p = UnityEngine.Random.Range (0, 10);
+		if (p < 1) {
+			#if !UNITY_EDITOR
 		LeaderBoard.instance.postScore ();
-		#endif
+			#endif
+		}
 		LevelManager.instance.stopCountDown ();
 		GameController.instance.OnGameOver (gameObject);
 
@@ -187,11 +197,13 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 		if (InputManager.instance.canInput ()) {
 			InputManager.instance.DisableTouchForDelay ();
 			InputManager.instance.AddButtonTouchEffect ();
+			LevelManager.instance.stopCountDown ();
 			GameController.instance.PauseGame();
 		}
 	}
 	public void levelUp() {
 		if (!isGameOver) {
+			this.ResetPrefs ();
 			LevelManager.instance.OnLevelUp ();
 			SetBackgroundColor ();
 			score = LevelManager.instance.currentLevel.levelUpCount;
@@ -218,5 +230,9 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 			GameController.instance.Tutorial2 ();
 			PlayerPrefs.SetInt ("tutorial2", 1);
 		}
+	}
+
+	public void OnResume() {
+		LevelManager.instance.startCountDown ();
 	}
 }

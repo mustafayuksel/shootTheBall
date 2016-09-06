@@ -106,9 +106,17 @@ public class GameController : MonoBehaviour
 		} else if (LastScreen.name == "Pause") {
 			LastScreen.OnWindowRemove ();
 			LastScreen = GetUIScreen ("GamePlay");
+			LevelManager.instance.stopCountDown ();
+
 		} else if (LastScreen.name == "GameOver") {
 			ExitToMainScreenFromGameOver (LastScreen);
 			LastScreen = GetUIScreen ("MainScreen");
+			LevelManager.instance.stopCountDown ();
+		} else if (LastScreen.name == "ChooseLevel") {
+			Debug.Log ("else if");
+			LastScreen.OnWindowRemove ();
+			LastScreen.SetActive (false);
+			SpawnUIScreen ("MainScreen");
 		}
 	}
 
@@ -180,6 +188,8 @@ public class GameController : MonoBehaviour
 	/// <param name="currentScreen">Current screen.</param>
 	public void StartGamePlay( GameObject currentScreen )
 	{
+		PlayerPrefs.SetInt ("isRescued", 0);
+		PlayerPrefs.SetInt ("LastScore", 0);
 		currentScreen.SetActive (false);
 		SpawnUIScreen ("NextLevel");
 		Invoke ("ContinueGamePlay", 2f);
@@ -212,6 +222,7 @@ public class GameController : MonoBehaviour
 	public void ResumeGame( GameObject currentScreen)
 	{
 		currentScreen.OnWindowRemove ();
+		GamePlay.instance.OnResume ();
 
 	}
 

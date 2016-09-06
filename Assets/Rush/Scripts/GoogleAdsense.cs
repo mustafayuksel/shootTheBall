@@ -10,6 +10,7 @@ public class GoogleAdsense : MonoBehaviour {
     InterstitialAd interstitial;
 
 	void Awake() {
+
 		requestInterstitialAd ();
 		if (instance == null) {
 			instance = this;

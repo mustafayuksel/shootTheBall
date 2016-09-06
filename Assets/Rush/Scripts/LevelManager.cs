@@ -477,7 +477,7 @@ public class LevelManager : MonoBehaviour {
 	public void stopCountDown() {
 
 		CancelInvoke ();
-		currentLevel.resetTimer ();
+		//currentLevel.resetTimer ();
 		currentLevel.timerActive = false;
 		TickSoundController.instance.stopTickSound ();
 	}
