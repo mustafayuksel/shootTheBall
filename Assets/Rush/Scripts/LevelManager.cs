@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 	public Level currentLevel;
 	private Ring currentRing;
 	private Ring ring2;
+	bool countingDown = false;
 
 	public static LevelManager instance;
 
@@ -461,11 +462,10 @@ public class LevelManager : MonoBehaviour {
 		if (currentLevel.hasTimeOut() && currentLevel.timerActive && !GameController.instance.isGamePaused) {
 			currentLevel.timeOut--;
 			if (currentLevel.timeOut < 0) {
-				TickSoundController.instance.stopTickSound ();
-				currentLevel.resetTimer ();
+				stopCountDown ();
 				GameController.instance.OnGameOver (GameController.instance.LastScreen);
 			}	
-			if (currentLevel.timeOut < Level.TIMEOUT_CRITICAL) {
+			else if (currentLevel.timeOut < Level.TIMEOUT_CRITICAL) {
 
 				if (AudioManager.instance.isSoundEnabled) {
 					TickSoundController.instance.startTickSound ();
@@ -476,6 +476,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void stopCountDown() {
 
+		countingDown = false;
 		CancelInvoke ();
 		//currentLevel.resetTimer ();
 		currentLevel.timerActive = false;
@@ -509,8 +510,12 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void startCountDown() {
-		currentLevel.timerActive = true;
-		InvokeRepeating ("onTimerTick", 1f, 1f);
+		if (!countingDown) {
+			currentLevel.timerActive = true;
+			InvokeRepeating ("onTimerTick", 1f, 1f);
+			countingDown = true;
+		}
+
 	}
 
 

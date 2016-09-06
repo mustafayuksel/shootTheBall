@@ -35,7 +35,7 @@ public class GameOver : MonoBehaviour
 		}
 		#endif
 
-		if (PlayerPrefs.GetInt ("isRescued", 0) == 0) {
+		if ((PlayerPrefs.GetInt ("isRescued", 0) == 0) && (LevelManager.instance.currentLevel.timeOut > 0)) {
 			rescueButton.gameObject.SetActive (true);
 		} else {
 			rescueButton.gameObject.SetActive (false);
@@ -83,6 +83,7 @@ public class GameOver : MonoBehaviour
 
 			#if UNITY_ANDROID || UNITY_IOS
 			GoogleAdsense.instance.showInterstitialAd();
+			float timeout = 0f;
 			PlayerPrefs.SetFloat("timeout",LevelManager.instance.currentLevel.timeOut);
 			PlayerPrefs.SetInt("isRescued",1);
 			GameController.instance.ReloadGame(gameObject);

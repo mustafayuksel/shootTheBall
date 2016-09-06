@@ -55,7 +55,7 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	{
 		CancelInvoke ();
 		Debug.Log ("Current Level Index:" + LevelManager.instance.currentLevelIndex);
-		LevelManager.instance.currentLevel = LevelManager.instance.allLevels [LevelManager.instance.currentLevelIndex];
+		LevelManager.instance.setCurrentLevel (LevelManager.instance.currentLevelIndex);
 		LevelManager.instance.currentLevel.resetTimer ();
 		LevelManager.instance.startCountDown ();
 	
