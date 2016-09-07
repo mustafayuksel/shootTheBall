@@ -302,7 +302,7 @@ public class LevelManager : MonoBehaviour {
 			.setRing1Direction(1.0f)
 			.setRing1AnimType(EGTween.EaseType.linear)
 			.setRing1MinSpeed (100)
-			.setRing1MaxSpeed (150).setLevelUpCount (10).
+			.setRing1MaxSpeed (150).setLevelUpCount (5).
 			setTimeOut(1000f).build ();
 
 		allLevels [35] = builder.setLevel (new Level ()).setRing1 (allRings [0]).setRing2(allRings[6]).setLevelNumber (1)

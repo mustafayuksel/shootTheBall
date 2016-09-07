@@ -29,18 +29,25 @@ public class GameOver : MonoBehaviour
 		txtScore.text = PlayerPrefs.GetInt ("LastScore", 0).ToString();
 
 		#if UNITY_ANDROID || UNITY_IOS
-		//If ad is not available, rescue button will be deactivated.
-		if (!UnityAds.instance.IsReady()) {
-			transform.FindChild("Bottom-Panel/btn-rescue").gameObject.SetActive(false);
-		}
+	
 		#endif
 
-		if ((PlayerPrefs.GetInt ("isRescued", 0) == 0) && (LevelManager.instance.currentLevel.timeOut > 0)) {
+		if ((PlayerPrefs.GetInt ("isRescued", 0) == 0) && (LevelManager.instance.currentLevel.timeOut > 0) 
+			&& GoogleAdsense.instance.isReady()) {
 			rescueButton.gameObject.SetActive (true);
 		} else {
 			rescueButton.gameObject.SetActive (false);
 
 		}
+
+		float i = UnityEngine.Random.Range (0, 10);
+		Debug.Log ("random variable=" + i);
+		if (i < 1) {
+			if (GoogleAdsense.instance.isReady ()) {
+				GoogleAdsense.instance.showInterstitialAd ();
+			}
+		}
+
 
 	}
 

@@ -127,12 +127,10 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 		/// <summary>>
 		/// Shows full page add with the probability of %10
 		/// </summary>
-		int p = UnityEngine.Random.Range (0, 10);
-		if (p < 1) {
-			#if !UNITY_EDITOR
-		LeaderBoard.instance.postScore ();
-			#endif
-		}
+
+		#if !UNITY_EDITOR
+			LeaderBoard.instance.postScore ();
+		#endif
 		LevelManager.instance.stopCountDown ();
 		GameController.instance.OnGameOver (gameObject);
 

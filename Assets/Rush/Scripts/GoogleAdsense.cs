@@ -36,9 +36,15 @@ public class GoogleAdsense : MonoBehaviour {
 	}
 
 	public void showInterstitialAd() {
+
 		if (interstitial.IsLoaded ()) {
 			interstitial.Show ();
+			requestInterstitialAd ();
 		}
+	}
+
+	public bool isReady() {
+		return interstitial.IsLoaded ();
 	}
 
 
