@@ -23,7 +23,7 @@ public class GoogleAdsense : MonoBehaviour {
 	public void requestInterstitialAd() {
 
 		#if UNITY_ANDROID
-		string adUnitId = "ca-app-pub-1847727001534987/3933356952";
+		string adUnitId = "ca-app-pub-1847727001534987~7139868552";
 		#else 
 		string adUnitId = "unexpected";
 		#endif

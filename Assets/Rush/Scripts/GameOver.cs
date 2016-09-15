@@ -32,15 +32,15 @@ public class GameOver : MonoBehaviour
 	
 		#endif
 
-		if ((PlayerPrefs.GetInt ("isRescued", 0) == 0) && (LevelManager.instance.currentLevel.timeOut > 0) 
+		/*if ((PlayerPrefs.GetInt ("isRescued", 0) == 0) && (LevelManager.instance.currentLevel.timeOut > 0) 
 			&& GoogleAdsense.instance.isReady()) {
 			rescueButton.gameObject.SetActive (true);
 		} else {
 			rescueButton.gameObject.SetActive (false);
 
-		}
+		}*/
 
-		float i = UnityEngine.Random.Range (0, 10);
+		float i = UnityEngine.Random.Range (0, 8);
 		Debug.Log ("random variable=" + i);
 		if (i < 1) {
 			if (GoogleAdsense.instance.isReady ()) {
