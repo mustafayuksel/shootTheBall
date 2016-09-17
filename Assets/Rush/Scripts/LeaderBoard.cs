@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
-using GooglePlayGames.BasicApi;
+using UnityEngine.SocialPlatforms.GameCenter;
 using UnityEngine.UI;
 
 public class LeaderBoard : MonoBehaviour {
@@ -17,12 +16,6 @@ public class LeaderBoard : MonoBehaviour {
 
 
 	void Awake() {
-
-		PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder ()
-			.Build ();
-		PlayGamesPlatform.InitializeInstance (config);
-		PlayGamesPlatform.DebugLogEnabled = true;
-		PlayGamesPlatform.Activate ();
 
 		Social.localUser.Authenticate ((bool success) => {
 			
@@ -45,8 +38,8 @@ public class LeaderBoard : MonoBehaviour {
 	}
 
 	public void showLeaderBoardUI() {
-
-		((PlayGamesPlatform)Social.Active).ShowLeaderboardUI (leaderboardId); 
+		GameCenterPlatform.ShowLeaderboardUI(leaderboardId, TimeScope.AllTime);
+		//((PlayGamesPlatform)Social.Active).ShowLeaderboardUI (leaderboardId); 
 
 	}
 	public void login() {
