@@ -24,7 +24,9 @@ public class GoogleAdsense : MonoBehaviour {
 
 		#if UNITY_ANDROID
 		string adUnitId = "ca-app-pub-1847727001534987/8616601751";
-		#else 
+		#elif UNITY_IOS
+		string adUnitId = "ca-app-pub-1847727001534987/8025479356";
+		#else
 		string adUnitId = "unexpected";
 		#endif
 
