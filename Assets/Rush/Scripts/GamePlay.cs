@@ -166,9 +166,9 @@ public class GamePlay : MonoBehaviour, IPointerDownHandler
 	/// </summary>
 	void SetBackgroundColor()
 	{
-		//sp_background.color = BGColors [UnityEngine.Random.Range (0, BGColors.Count)];;
+		sp_background.color = BGColors [UnityEngine.Random.Range (0, BGColors.Count)];;
 
-		sp_background.color = BGColors [0];
+		//sp_background.color = BGColors [0];
 	}
 
 
